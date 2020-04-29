@@ -3,13 +3,13 @@
 
 ## Usage and Examples
 
-### Summary
+### Introduction
 
-* Python (3.7) script to convert Notes from SImple Note  to ENEX (XML) format
-* Simple Note exports notes to a proprietary JSON format. 
-* ENEX is an XML-based format that appears to be a *lingua franca* in the Note application world. Multiple note taking apps (Joplin, StandardNotes, EverNote,  Simple Note itself) can import notes in ENEX format
+* Python (3.7) script to convert Notes from [Simple Note](www.simplenote.com), a popular multiplatform Note taking app, to [ENEX](https://evernote.com/blog/how-evernotes-xml-export-format-works/)  XML-based format.
+  * Simple Note exports notes to a proprietary JSON format. 
+  * ENEX is an XML-based format that appears to be a *lingua franca* in the Note application world. Many apps such as  Joplin, StandardNotes, EverNote --even Simple Note itself-- can import notes in ENEX format.
 * For additional information see the "Background Information" section  below.
-* Extensive use of f-Strings, requiring Python 3.6+
+* Requires : Python 3.6+  (mainly because of extensive use of f-Strings)
 
 ### Usage
 
