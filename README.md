@@ -7,7 +7,7 @@
 
 * simplenote2enex.py  is a Python (3.7) script to convert Notes from [Simple Note](www.simplenote.com), a popular multiplatform Note taking app, to [ENEX](https://evernote.com/blog/how-evernotes-xml-export-format-works/)  XML-based format.
   * Simple Note exports notes to a proprietary JSON format. 
-  * ENEX ([EverNote Export](https://evernote.com/blog/how-evernotes-xml-export-format-works/)) is an XML-based format that appears to be some kind of a *lingua franca* in the Note application world. Many apps such as  Joplin, StandardNotes, EverNote --even Simple Note itself-- can import notes in ENEX format.
+  * ENEX ([Evernote Export](https://evernote.com/blog/how-evernotes-xml-export-format-works/)) is an XML-based format that appears to be some kind of a *lingua franca* in the Note application world. Many apps such as  Joplin, StandardNotes, Evernote --even Simple Note itself-- can import notes in ENEX format.
 * See the "Background Information" section  below for additional details.
 * simplenote2enex requires Python 3.6+,  mainly because of extensive use of f-Strings.
 
@@ -127,7 +127,7 @@ Converted 3 notes
 * I have successfully imported into Joplin an ENEX file with  500+ notes,  generated from my Simple Note deployment.  
 
   * I tested the import  with joplin CLI (*joplin import --log-level debug  thefile.enex*) , and found two hiccups, both related to having "&" in the Note title;  solved by changing the character to "-".  I will inquire about this bug/feature in the Joplin forum)
-  * Once sorted I imported from the Joplin desktop application without a glitch :  File / Import / ENEX - EverNote Export File (as Markdown)  -  
+  * Once sorted I imported from the Joplin desktop application without a glitch :  File / Import / ENEX - Evernote Export File (as Markdown)  -  
 
 * Importing with the Joplin desktop application appears to hang if for some reason it cannot process some element due to some encoding error or problem, such as the one reported above.
 
@@ -190,7 +190,7 @@ Converted 3 notes
 
 ## ENEX
 
-* ENEX is the [EverNote](https://evernote.com/) xml-based import/export format for notes, used as some kind of "lingua franca" by many note-taking applications.
+* ENEX is the [Evernote](https://evernote.com/) xml-based import/export format for notes, used as some kind of "lingua franca" by many note-taking applications.
 * See: https://evernote.com/blog/how-evernotes-xml-export-format-works/
 * Example of ENEX file : https://gist.github.com/evernotegists/6116886
 
