@@ -7,7 +7,7 @@
 
 * simplenote2enex.py  is a Python (3.7) script to convert Notes from [Simple Note](www.simplenote.com), a popular multiplatform Note taking app, to [ENEX](https://evernote.com/blog/how-evernotes-xml-export-format-works/)  XML-based format.
   * Simple Note exports notes to a proprietary JSON format. 
-  * ENEX ([Evernote Export](https://evernote.com/blog/how-evernotes-xml-export-format-works/)) is an XML-based format that appears to be some kind of a *lingua franca* in the Note application world. Many apps such as  Joplin, StandardNotes, Evernote --even Simple Note itself-- can import notes in ENEX format.
+  * ENEX ([Evernote Export](https://evernote.com/blog/how-evernotes-xml-export-format-works/)) is an XML-based format that appears to be some kind of a *lingua franca* in the Note application world. Many apps such as Evernote, Joplin, StandardNotes, [Apple Notes](https://support.apple.com/en-eg/HT205793) --even Simple Note itself-- can import notes in ENEX format.
 * See the "Background Information" section  below for additional details.
 * simplenote2enex requires Python 3.6+,  mainly because of extensive use of f-Strings.
 
