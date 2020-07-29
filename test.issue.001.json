@@ -13,6 +13,13 @@
         "creationDate": "2020-07-29T22:04:23.248Z",
         "lastModified": "2020-07-29T22:04:55.000Z",
         "markdown": true
+      },
+      {
+        "id": "549f48ae-7f8a-4f54-8d9d-05652c7f8a03",
+        "content": "Test for issue 1 - grin emoji\r\n\r\n## Header level 2\r\n\r\n A grin emoji  ![grin](https://github.githubassets.com/images/icons/emoji/unicode/1f601.png) \r\n",
+        "creationDate": "2020-07-29T22:29:54.406Z",
+        "lastModified": "2020-07-29T22:30:14.000Z",
+        "markdown": true
       }
     ],
     "trashedNotes": []
