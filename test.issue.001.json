@@ -1,0 +1,20 @@
+{
+    "activeNotes": [
+      {
+        "id": "5aab471a-9c46-4e5d-ad95-e3bf9a457d25",
+        "content": "Test for issue 1 - using japanese chars\r\n\r\nfirst version choked on japanese chars like 育美 強針",
+        "creationDate": "2020-07-29T22:02:51.504Z",
+        "lastModified": "2020-07-29T22:05:18.000Z",
+        "markdown": true
+      },
+      {
+        "id": "43f02905-7557-4dc6-b47f-e1f90203f3da",
+        "content": "Test for issue 1 - using special chars\r\n\r\nfirst version choked on special chars like 𝑬𝑵 or 𝑭𝑹\r\n",
+        "creationDate": "2020-07-29T22:04:23.248Z",
+        "lastModified": "2020-07-29T22:04:55.000Z",
+        "markdown": true
+      }
+    ],
+    "trashedNotes": []
+}
+  
