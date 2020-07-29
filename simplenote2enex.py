@@ -205,7 +205,7 @@ class SimpleNoteToEnex:
                 eprint(f"Processing file: {self.json_file} ")
                 eprint(f"Notes author: ", self.author)
                 eprint(f"Active notes:   {num_active_notes}")
-                if 'thrashedNotes' in simplenotes:
+                if 'trashedNotes' in simplenotes:
                     eprint(f"Trashed notes:  {len(simplenotes['trashedNotes'])} -- will not be converted to ENEX")
             nconv = 0
             number_to_be_converted = min(self.max_notes, num_active_notes)
