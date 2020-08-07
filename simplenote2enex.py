@@ -4,6 +4,7 @@ import json
 import datetime
 import logging
 import sys
+import re
 
 def eprint(*args, **kwargs):
     """
@@ -90,6 +91,8 @@ class SimpleNoteToEnex:
         """
         self.author = author
         self.add_note_title = create_title
+        # Max length -- in case there is no \r\n to delimit the note's first line
+        self.max_title_len = 30   # Still unused
         self.sn_title_separator = '\r\n'
         self.json_file = json_file
         self.export_time = datetime.datetime.now().strftime("%Y%m%d%H%M%S%ZZ")  # TODO: fix time format (Z)
@@ -114,6 +117,27 @@ class SimpleNoteToEnex:
             eprint(f"match_tagged {self.match_tagged}")
             eprint(f"filter_tags {self.filter_tags}")
             eprint(f"invert_match {self.invert_match}")
+    
+    def cleanup_content(self, json_content, pattern = "\\r\\n", remove_whitespace = True):
+        """
+        Clean up json_content from simplenotes (or other note provider):
+        - remove leading and trailing whitespace - driven by remove_whitespace Boolean
+        - remove leading and training pattern strings (default '\r\n' -> empty lines) 
+        
+        returns:  "clean" string
+        """
+        if remove_whitespace:
+            # Leading whitespace
+            #temp_string = re.sub("\A\s+", "", json_content)
+            # Trailing whitespace
+            #temp_string = re.sub("\s+\Z", "", temp_string)
+            temp_string = json_content.strip()
+
+        # remove pattern at the start of the string
+        temp_string = re.sub("\A" + pattern, "", temp_string)
+        # remove pattern at the end of the string 
+        temp_string = re.sub(pattern + "\Z", "", temp_string)
+        return temp_string
 
     def convert_to_enex(self, sn_note):
         """
@@ -136,6 +160,7 @@ class SimpleNoteToEnex:
         enex_created = sn_note['creationDate'].replace('-', '').replace(':', '').replace('.', '')
         enex_updated = sn_note['lastModified'].replace('-', '').replace(':', '').replace('.', '')
         enex_content = verif_none(sn_note['content'])
+        enex_content = self.cleanup_content(enex_content, self.line_sep, True)
         enex_author = verif_none(self.author)
         enex_source = "Converted from Simple Note (simplenote.com)"
         # enex_latitude = kwargs['latitude']
