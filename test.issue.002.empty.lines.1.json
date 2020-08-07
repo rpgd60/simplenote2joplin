@@ -1,0 +1,17 @@
+{
+    "activeNotes": [
+        {
+            "id": "95bcd5e5-7bee-4353-837f-2222222222",
+            "content": "Note with multiple empty lines (1)\r\n\r\n- Four (4) rn below this one\r\n\r\n\r\n\r\n-- Four (4) rn below this one\r\n\r\n\r\n\r\n",
+            "creationDate": "2020-07-11T04:39:26.513Z",
+            "lastModified": "2020-07-11T04:40:55.000Z",
+            "markdown": true,
+            "tags": [
+                "test"
+            ]    
+        }
+
+    ],
+    "trashedNotes": []
+}
+  
