@@ -155,7 +155,9 @@ class SimpleNoteToEnex:
         returns:  string with embedded html or xml extra codes
         """
         two_spaces = "  "
-        temp_string = re.sub(self.line_sep, two_spaces, json_content)
+        back_slash = '\\\\'   ## need 4 ...
+        html_break = '<br/>'
+        temp_string = re.sub(self.line_sep, html_break, json_content)
         return temp_string
 
     def convert_to_enex(self, sn_note):
@@ -208,9 +210,7 @@ class SimpleNoteToEnex:
 <content>
     <![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
     <!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
-    <en-note>
-       {enex_content} 
-    </en-note>
+    <en-note>{enex_content}</en-note>
     ]]>
 </content>
 <created>{enex_created}</created>
