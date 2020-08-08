@@ -14,10 +14,11 @@
 ### Usage
 
 ```
-$ python simplenote2enex.py -h
+$ python simplenote2enex.py --help
 usage: simplenote2enex.py [-h] --json-file JSON_FILE [--author AUTHOR]
-                          [--create-title] [--tag-filter TAG_FILTER]
-                          [--match-tagged] [--match-untagged] [--invert-match]
+                          [--create-title] [--title_size TITLE_SIZE]
+                          [--tag-filter TAG_FILTER] [--match-tagged]
+                          [--match-untagged] [--invert-match]
                           [--verbose-level VERBOSE_LEVEL] [--number NUM_NOTES]
 
 optional arguments:
@@ -27,6 +28,8 @@ optional arguments:
   --author AUTHOR       Specify an author for all converted notes
   --create-title        Attempt to create a title for each ENEX note from
                         first line of "Simple Note" notes
+  --title_size TITLE_SIZE
+                        Maximum size in characters of title - default 250
   --tag-filter TAG_FILTER
                         Comma-separated list of tags. Will convert notes
                         matching any tag in list
@@ -39,6 +42,7 @@ optional arguments:
                         output
   --number NUM_NOTES    Number of notes to convert (Optional, default is
                         convert all notes)
+
 
 
 ```
@@ -120,7 +124,10 @@ Converted 3 notes
 
 ```
 
+### Revisions - bug and functionality fixes
 
+- Issue #2 - title not generated if note content started with the "line separator" ("\r\n").  Modified to remove whitespace and one or more sequences of "\r\n" at the beginning or the end of the note content.
+- Unsolicited feature:  add a cli parameter to control the maximum size of generated note title (default value 250 chars)
 
 ### Importing generated ENEX files to other applications  - Joplin
 
