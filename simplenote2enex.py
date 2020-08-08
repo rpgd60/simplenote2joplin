@@ -19,7 +19,7 @@ def eprint(*args, **kwargs):
     """
     print(*args, file=sys.stderr, **kwargs)
 
-max_title_len = 250
+MAX_TITLE_LEN = 250
 
 class SimpleNoteToEnex:
     """
@@ -75,7 +75,7 @@ class SimpleNoteToEnex:
 
     """
 
-    def __init__(self, json_file, author=None, create_title=False, title_size=max_title_len, verbose_level=0, max_notes=None, tag_filter='',
+    def __init__(self, json_file, author=None, create_title=False, title_size=MAX_TITLE_LEN, verbose_level=0, max_notes=None, tag_filter='',
                  invert_match=False, match_tagged=False, match_untagged=False):
         """
 
@@ -96,7 +96,7 @@ class SimpleNoteToEnex:
         self.author = author
         self.add_note_title = create_title
         # Max length -- in case there is no \r\n to delimit the note's first line
-        self.max_title_len = title_size
+        self.max_title_len = title_size if title_size >= 0 else MAX_TITLE_LEN
         self.sn_title_separator = '\r\n'
         self.json_file = json_file
         self.export_time = datetime.datetime.now().strftime("%Y%m%d%H%M%S%ZZ")  # TODO: fix time format (Z)
@@ -319,8 +319,8 @@ if __name__ == '__main__':
                         help='Specify an author for all converted notes')
     parser.add_argument('--create-title', required=False, dest='create_title', action='store_true',
                         help='Attempt to create a title for each ENEX note from first line of "Simple Note" notes')
-    parser.add_argument('--title_size', required=False, dest='title_size', type=int, default=f'{max_title_len}',
-                        help=f'Maximum size in characters of title - default {max_title_len}')
+    parser.add_argument('--title_size', required=False, dest='title_size', type=int, default=f'{MAX_TITLE_LEN}',
+                        help=f'Maximum size in characters of title - default {MAX_TITLE_LEN}')
     parser.add_argument('--tag-filter', required=False, dest='tag_filter',
                         help='Comma-separated list of tags. Will convert notes matching any tag in list')
     parser.add_argument('--match-tagged', required=False, dest='match_tagged', action='store_true',
