@@ -150,14 +150,17 @@ class SimpleNoteToEnex:
     def embed_extra_codes(self, json_content):
         """
         Modify up json_content from simplenotes (or other note provider):
-        - attempt to fix the disappeance of empty lines when joplin imports the enex file
+        Attempt to fix the disappeance of empty lines when joplin imports the enex file
+        (issue #002 in github)
+        The current fix is:
+        changing every occurrence of '\r\n\r\n' (2 empty lines in original simple note) into '\r\n<br/>'
         
         returns:  string with embedded html or xml extra codes
         """
-        two_spaces = "  "
-        back_slash = '\\\\'   ## need 4 ...
+        # two_spaces = "  "
+        # back_slash = '\\\\'   ## need 4 for 2 levels of escaping
         html_break = '<br/>'
-        temp_string = re.sub(self.line_sep, html_break, json_content)
+        temp_string = re.sub(self.line_sep+self.line_sep, self.line_sep+html_break, json_content)
         return temp_string
 
     def convert_to_enex(self, sn_note):
@@ -196,7 +199,7 @@ class SimpleNoteToEnex:
         else:
             enex_title = ''
 
-        # enex_content = self.embed_extra_codes(enex_content)
+        enex_content = self.embed_extra_codes(enex_content)
 
         enex_tags = ''
         if 'tags' in sn_note:
