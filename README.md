@@ -126,8 +126,7 @@ Converted 3 notes
 
 ### Revisions - bug and functionality fixes
 
-- Issue #2 - title not generated if note content started with the "line separator" ("\r\n").  Modified to remove whitespace and one or more sequences of "\r\n" at the beginning or the end of the note content.
-- Unsolicited feature:  add a cli parameter to control the maximum size of generated note title (default value 250 chars)
+- 
 
 ### Importing generated ENEX files to other applications  - Joplin
 
@@ -145,10 +144,16 @@ Converted 3 notes
 
 - [Issue 2](https://github.com/rpgd60/simplenote2enex/issues/2) reported two problems with the behavior of simplenote2exe
 
-  - All empty lines are removed (ongoing fix)
+  - All empty lines are removed -  
 
-  - ENEX note title not generated if note content started with the "line separator" ("\r\n").  Modified to remove whitespace and one or more sequences of "\r\n" at the beginning or the end of the note content.
-
+    - Partial fix :  substitute every occurrence of ```'\r\n\r\n'``` (two empty lines) in the json content with ``` '\r\n<br/>``` before inserting into the XML template.
+  - This fix does not address the proper display of tables immediately after (single '\r\n') a block of text, list, etc.  To properly display tables, they should be preceded by two empty lines in the original Simple Note ( ```'\r\n\r\n'```  in the json).   
+  
+  - ENEX note title not generated if note content started with the "line separator" ("\r\n").  
+  
+    - Modified to remove whitespace and one or more sequences of "\r\n" at the beginning or the end of the note content.  
+    - In the process, also added a cli parameter to control the maximum size of generated note title (default value 250 chars)
+    
     
 
 
