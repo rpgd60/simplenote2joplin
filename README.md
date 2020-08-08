@@ -133,7 +133,7 @@ Converted 3 notes
 
 * I have successfully imported into Joplin an ENEX file with  500+ notes,  generated from my Simple Note deployment.  
 
-  * I tested the import  with joplin CLI (*joplin import --log-level debug  thefile.enex*) , and found two hiccups, both related to having "&" in the Note title;  solved by changing the character to "-".  I will inquire about this bug/feature in the Joplin forum)
+  * I tested the import  with joplin CLI (*joplin import --log-level debug  thefile.enex*) , and found two hiccups, both related to having "&" in the Note title;  solved by changing the character to "-".  [Inquired](https://discourse.joplinapp.org/t/enex-import-error-with-ampersand-in-title/8322) about this bug/feature in the Joplin forum)
   * Once sorted I imported from the Joplin desktop application without a glitch :  File / Import / ENEX - Evernote Export File (as Markdown)  -  
 
 * Importing with the Joplin desktop application appears to hang if for some reason it cannot process some element due to some encoding error or problem, such as the one reported above.
@@ -143,9 +143,15 @@ Converted 3 notes
   * One option is to use the CLI application for testing / troubleshooting if the desktop/GUI Joplin application hangs when importing a specific ENEX file.  Once all the offending notes have been identified and modified,   perform the import procedure from the Joplin GUI app.
   * Alternatively, it is possible to use Joplin's debugging functionality documented at:  https://github.com/laurent22/joplin/blob/master/readme/debugging.md
 
-  
+- [Issue 2](https://github.com/rpgd60/simplenote2enex/issues/2) reported two problems with the behavior of simplenote2exe
 
-  
+  - All empty lines are removed (ongoing fix)
+
+  - ENEX note title not generated if note content started with the "line separator" ("\r\n").  Modified to remove whitespace and one or more sequences of "\r\n" at the beginning or the end of the note content.
+
+    
+
+
 
 ## Background Information
 
