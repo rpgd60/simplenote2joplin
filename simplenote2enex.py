@@ -19,6 +19,7 @@ def eprint(*args, **kwargs):
     """
     print(*args, file=sys.stderr, **kwargs)
 
+max_title_len = 250
 
 class SimpleNoteToEnex:
     """
@@ -37,6 +38,8 @@ class SimpleNoteToEnex:
         True if title of the note must be inferred from first line of the (Simple Note) note
     sn_title_separator : str
         Separates first line from the rest in SN Notes - used to identify title.  Initially hard-coded to '\r\n'
+    max_title_len : int
+        Maximum size of title - applies only if add_note_title is True
     json_file : str
         The JSON file containing one or multiple Simple Note notes
     export_time : str
@@ -72,7 +75,7 @@ class SimpleNoteToEnex:
 
     """
 
-    def __init__(self, json_file, author=None, create_title=False, verbose_level=0, max_notes=None, tag_filter='',
+    def __init__(self, json_file, author=None, create_title=False, title_size=max_title_len, verbose_level=0, max_notes=None, tag_filter='',
                  invert_match=False, match_tagged=False, match_untagged=False):
         """
 
@@ -81,6 +84,7 @@ class SimpleNoteToEnex:
         json_file
         author
         create_title
+        title_size
         verbose_level
         max_notes
         tag_filter
@@ -92,7 +96,7 @@ class SimpleNoteToEnex:
         self.author = author
         self.add_note_title = create_title
         # Max length -- in case there is no \r\n to delimit the note's first line
-        self.max_title_len = 30   # Still unused
+        self.max_title_len = title_size
         self.sn_title_separator = '\r\n'
         self.json_file = json_file
         self.export_time = datetime.datetime.now().strftime("%Y%m%d%H%M%S%ZZ")  # TODO: fix time format (Z)
@@ -171,6 +175,7 @@ class SimpleNoteToEnex:
             # Simple Note JSON export format does not have explicit field to contain the note title.
             # Assume title is first line of Simple Note content, delimited by first "\r\n"
             enex_title = enex_content.split(self.sn_title_separator, 1)[0]
+            enex_title = enex_title[:min(len(enex_title), self.max_title_len)]
         else:
             enex_title = ''
 
@@ -299,7 +304,7 @@ class SimpleNoteToEnex:
 
 def main(args):
     # TODO: explicit argument for output file
-    sne = SimpleNoteToEnex(args.json_file, args.author, args.create_title, \
+    sne = SimpleNoteToEnex(args.json_file, args.author, args.create_title, args.title_size, 
                            args.verbose_level, args.num_notes, args.tag_filter, args.invert_match,
                            args.match_tagged, args.match_untagged )
     enex_file = sne.process_file()
@@ -314,6 +319,8 @@ if __name__ == '__main__':
                         help='Specify an author for all converted notes')
     parser.add_argument('--create-title', required=False, dest='create_title', action='store_true',
                         help='Attempt to create a title for each ENEX note from first line of "Simple Note" notes')
+    parser.add_argument('--title_size', required=False, dest='title_size', type=int, default=f'{max_title_len}',
+                        help=f'Maximum size in characters of title - default {max_title_len}')
     parser.add_argument('--tag-filter', required=False, dest='tag_filter',
                         help='Comma-separated list of tags. Will convert notes matching any tag in list')
     parser.add_argument('--match-tagged', required=False, dest='match_tagged', action='store_true',
