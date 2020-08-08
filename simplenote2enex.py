@@ -122,7 +122,7 @@ class SimpleNoteToEnex:
             eprint(f"filter_tags {self.filter_tags}")
             eprint(f"invert_match {self.invert_match}")
     
-    def cleanup_content(self, json_content, pattern = "\\r\\n", remove_whitespace = True):
+    def cleanup_content(self, json_content, pattern = "\\r\\n", remove_whitespace = True, replace_br = True):
         """
         Clean up json_content from simplenotes (or other note provider):
         - remove leading and trailing whitespace - driven by remove_whitespace Boolean
@@ -141,6 +141,21 @@ class SimpleNoteToEnex:
         temp_string = re.sub("\A" + pattern, "", temp_string)
         # remove pattern at the end of the string 
         temp_string = re.sub(pattern + "\Z", "", temp_string)
+
+        # if replace_br:
+        #     temp_string = re.sub(pattern, "<br/>", temp_string)
+        # return temp_string
+        return temp_string
+
+    def embed_extra_codes(self, json_content):
+        """
+        Modify up json_content from simplenotes (or other note provider):
+        - attempt to fix the disappeance of empty lines when joplin imports the enex file
+        
+        returns:  string with embedded html or xml extra codes
+        """
+        two_spaces = "  "
+        temp_string = re.sub(self.line_sep, two_spaces, json_content)
         return temp_string
 
     def convert_to_enex(self, sn_note):
@@ -178,6 +193,8 @@ class SimpleNoteToEnex:
             enex_title = enex_title[:min(len(enex_title), self.max_title_len)]
         else:
             enex_title = ''
+
+        # enex_content = self.embed_extra_codes(enex_content)
 
         enex_tags = ''
         if 'tags' in sn_note:
@@ -319,7 +336,7 @@ if __name__ == '__main__':
                         help='Specify an author for all converted notes')
     parser.add_argument('--create-title', required=False, dest='create_title', action='store_true',
                         help='Attempt to create a title for each ENEX note from first line of "Simple Note" notes')
-    parser.add_argument('--title_size', required=False, dest='title_size', type=int, default=f'{MAX_TITLE_LEN}',
+    parser.add_argument('--title-size', required=False, dest='title_size', type=int, default=f'{MAX_TITLE_LEN}',
                         help=f'Maximum size in characters of title - default {MAX_TITLE_LEN}')
     parser.add_argument('--tag-filter', required=False, dest='tag_filter',
                         help='Comma-separated list of tags. Will convert notes matching any tag in list')
