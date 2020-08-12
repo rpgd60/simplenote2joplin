@@ -133,7 +133,9 @@ Converted 3 notes
 * I have successfully imported into Joplin an ENEX file with  500+ notes,  generated from my Simple Note deployment.  
 
   * I tested the import  with joplin CLI (*joplin import --log-level debug  thefile.enex*) , and found two hiccups, both related to having "&" in the Note title;  solved by changing the character to "-".  [Inquired](https://discourse.joplinapp.org/t/enex-import-error-with-ampersand-in-title/8322) about this bug/feature in the Joplin forum)
-  * Once sorted I imported from the Joplin desktop application without a glitch :  File / Import / ENEX - Evernote Export File (as Markdown)  -  
+  * Once sorted I imported from the Joplin desktop application without a glitch :  File / Import / ENEX - Evernote Export File (as Markdown) 
+    * **NOTE**:  This ampersand-issue is tracked in [issue #3](https://github.com/rpgd60/simplenote2enex/issues/3).   
+    * **NOTE:** Implemented a quick fix to the issue above :  if a note title is to be generated,  replace any instance of "&" in the note title text with the ampersand html code ("\&amp;").  At the moment this functionality is hardcoded.  It may become driven by a command-line switch, if it is useful.
 
 * Importing with the Joplin desktop application appears to hang if for some reason it cannot process some element due to some encoding error or problem, such as the one reported above.
 
