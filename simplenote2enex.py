@@ -98,6 +98,8 @@ class SimpleNoteToEnex:
         # Max length -- in case there is no \r\n to delimit the note's first line
         self.max_title_len = title_size if title_size >= 0 else MAX_TITLE_LEN
         self.sn_title_separator = '\r\n'
+        # True if we want to address issue #03 (joplin chokes importing note with ampersand / & in note title)
+        self.fix_ampersand_title = True            
         self.json_file = json_file
         self.export_time = datetime.datetime.now().strftime("%Y%m%d%H%M%S%ZZ")  # TODO: fix time format (Z)
         self.verbose_level = verbose_level
@@ -196,6 +198,8 @@ class SimpleNoteToEnex:
             # Assume title is first line of Simple Note content, delimited by first "\r\n"
             enex_title = enex_content.split(self.sn_title_separator, 1)[0]
             enex_title = enex_title[:min(len(enex_title), self.max_title_len)]
+            if self.fix_ampersand_title:
+                enex_title = re.sub('&', '&amp;', enex_title)
         else:
             enex_title = ''
 
