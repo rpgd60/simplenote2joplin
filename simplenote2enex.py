@@ -213,7 +213,7 @@ class SimpleNoteToEnex:
 <content>
     <![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
     <!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
-    <en-note>{enex_content}</en-note>
+    <en-note><div>{enex_content}</div></en-note>
     ]]>
 </content>
 <created>{enex_created}</created>
