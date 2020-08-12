@@ -1,0 +1,12 @@
+{
+  "activeNotes": [
+    {
+        "id": "9b87c3d7-adb9-4709-b8f1-18fbc2b8ccf6",
+        "content": "First line (that will become a title) with an ampersand & for testing import to Joplin\r\nIn the line above we had to encode the & as &amp_; (without the underscore)\r\nAll other \"&\" in this note were written \"as is\"\r\n\r\n## Test & in a title\r\n\r\nTest & in plain text\r\n\r\n- Test & in a list\r\n- Test again & in a list\r\n\r\n| x | & in Table header | z | a | b |\r\n|---|---|---|---|---|\r\n| & in a table | d | e | f | g |\r\n| h | & in table | j | k | l |\r\n| m | n | o | p | q |",
+        "creationDate": "2020-08-12T15:03:41.612Z",
+        "lastModified": "2020-08-12T15:04:32.000Z",
+        "markdown": true
+    }
+  ],
+  "trashedNotes": []
+}
