@@ -10,7 +10,8 @@
   - In some cases, though, as documented in issue #2,  the behavior is not exactly correct, and it requires some small kludges to get Joplin to accept the "enex" files.
 - 23/8/2020 -  Based on the above, and to avoid creating false expectations:  
   - Change utility and repository name from simplenote2enex  to simplenote2joplin to reflect the actual behavior.  
-  - use "pseudo-ENEX" instead of "ENEX" in this file to avoid confusing any user.
+  - Modify this file (README.md) to reflect the utility behavior.
+  - Use "pseudo-ENEX" instead of "ENEX" in this file to avoid confusing any user.
 
 ## Usage and Examples
 
